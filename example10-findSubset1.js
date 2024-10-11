@@ -14,24 +14,25 @@
 // findSubset([1,2], outputArray);
 // console.log(outputArray);
 
-const subset = function (nums) {
-    function backTrack(nums, outputArray, tempArray = [], index = 0) {
-        if (index >= nums.length) {
-            outputArray.push([...tempArray]);
-            return;
-        }
+// const subset = function (nums) {
+//     function backTrack(nums, outputArray, tempArray = [], index = 0) {
+//         if (index >= nums.length) {
+//             outputArray.push([...tempArray]);
+//             return;
+//         }
 
-        tempArray.push(nums[index]);
-        backTrack(nums, outputArray, tempArray, index + 1);
+//         tempArray.push(nums[index]);
+//         backTrack(nums, outputArray, tempArray, index + 1);
 
-        tempArray.pop();
-        backTrack(nums, outputArray, tempArray, index + 1);
-    };
+//         tempArray.pop();
+//         backTrack(nums, outputArray, tempArray, index + 1);
+//     };
 
-    const outputArray = []
-    backTrack(nums, outputArray);
-    return outputArray;
-}
+//     const outputArray = []
+//     backTrack(nums, outputArray);
+//     return outputArray;
+// }
 
-const result = subset(["a","b"]);
-console.log(result);
+// const result = subset(["a","b"]);
+// console.log(result);
+ 
