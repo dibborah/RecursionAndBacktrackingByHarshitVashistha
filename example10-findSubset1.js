@@ -50,8 +50,6 @@ function findSubset1(array, outputArray, tempArray = [], index = 0) {
 }
 
 const outputArray = [];
-findSubset1([1, 2], outputArray);
+findSubset1([1,2], outputArray);
 
 console.log(outputArray);
-
- 

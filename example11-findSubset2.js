@@ -1,4 +1,7 @@
 // Tut way
+
+// Lecture 11
+
 // Need to understand the code
 function findSubset2 (array, outputArray, tempArray = [], startIdx = 0) {
     outputArray.push([...tempArray]);
@@ -10,5 +13,8 @@ function findSubset2 (array, outputArray, tempArray = [], startIdx = 0) {
 }
 
 const outputArray = [];
-findSubset2([1,2,3], outputArray);
-console.log(outputArray);
+const tempArray = [];
+findSubset2([1,2], outputArray, tempArray);
+
+
+
