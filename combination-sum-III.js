@@ -1,4 +1,4 @@
-function combinationSum3(k , n, outputArray, tempArray = [], start = 1) {
+function backTrack(k , n, outputArray, tempArray = [], start = 1) {
     if (k === 0 && n === 0) {
         outputArray.push([...tempArray])
         return;
@@ -11,12 +11,18 @@ function combinationSum3(k , n, outputArray, tempArray = [], start = 1) {
         };
         if (i > n) break;
         tempArray.push(i);
-        combinationSum3(k - 1, n - i, outputArray, tempArray, i + 1);
+        backTrack(k - 1, n - i, outputArray, tempArray, i + 1);
         tempArray.pop();
     }
 }
 
-const outputArray = [];
 const k = 3; const n = 9;
-combinationSum3(k, n, outputArray);
-console.log(outputArray);
+
+function combinationSum3(k, n) {
+    const outputArray = [];
+    backTrack(k, n, outputArray);
+    return outputArray;
+}
+
+const result = combinationSum3(k, n);
+console.log(result);
