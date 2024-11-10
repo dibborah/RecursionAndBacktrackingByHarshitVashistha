@@ -1,4 +1,4 @@
-function permutation(array, outputArray, tempArray = [], startIndex = 0) {
+function backTrack(array, outputArray, tempArray = [], startIndex = 0) {
     if (tempArray.length === array.length) {
         outputArray.push([...tempArray]);
         return;
@@ -8,11 +8,17 @@ function permutation(array, outputArray, tempArray = [], startIndex = 0) {
           continue;
         }
         tempArray.push(array[i]);
-        permutation(array, outputArray, tempArray, startIndex);
+        backTrack(array, outputArray, tempArray, startIndex);
         tempArray.pop();
     }
 }
 
-const outputArray = [];
-permutation([1], outputArray);
-console.log(outputArray);
+const permute = function(nums) {
+    const outputArray = [];
+    backTrack(nums, outputArray);
+    return outputArray;
+}
+
+const nums = [1, 2, 3];
+const result = permute(nums)
+console.log(result);
