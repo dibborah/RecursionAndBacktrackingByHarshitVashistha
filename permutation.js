@@ -3,11 +3,11 @@ function backTrack(array, outputArray, isUsed, tempArray = []) {
         outputArray.push([...tempArray]);
         return;
     };
+
     for(let i = 0; i < array.length; i++) {
         // if (tempArray.includes(array[i])) continue; // time and space complexity O(n) => Linear time complexity. Large inputs less efficient
-        if (isUsed[i]) { // O(1) => constant time and space complexity => Highly efficient for any inputs
-            continue;
-        }
+        if (isUsed[i]) continue; // O (1) => constant time and space complexity => Highly efficient for any inputs
+
         if (!isUsed[i]) {
             tempArray.push(array[i]);
             isUsed[i] = true;
@@ -18,10 +18,11 @@ function backTrack(array, outputArray, isUsed, tempArray = []) {
     }
 }
 
-const isUsed = [false, false, false];// This falsy array is the make the time complexity from O(n) to O(1)
+// const isUsed = [false, false, false];// This falsy array is the make the time complexity from O(n) to O(1)
 
 const permute = function(nums) {
     const outputArray = [];
+    const isUsed = new Array(nums.length).fill(false); // Dynamic and efficient way to create a falsy array whose length of falsy elements would vary
     backTrack(nums, outputArray, isUsed);
     return outputArray;
 }
