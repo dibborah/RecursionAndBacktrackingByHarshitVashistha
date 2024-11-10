@@ -1,20 +1,28 @@
-function backTrack(array, outputArray, tempArray = []) {
+function backTrack(array, outputArray, isUsed, tempArray = []) {
     if (tempArray.length === array.length) {
         outputArray.push([...tempArray]);
         return;
     };
     for(let i = 0; i < array.length; i++) {
-        if (tempArray.includes(array[i])) continue;
-        tempArray.push(array[i]);
-        backTrack(array, outputArray, tempArray);
+        // if (tempArray.includes(array[i])) continue; // time and space complexity O(n) => Linear time complexity. Large inputs less efficient
+        if (isUsed[i]) { // O(1) => constant time and space complexity => Highly efficient for any inputs
+            continue;
+        }
+        if (!isUsed[i]) {
+            tempArray.push(array[i]);
+            isUsed[i] = true;
+        }
+        backTrack(array, outputArray, isUsed, tempArray);
         tempArray.pop();
+        isUsed[i] = false; // The element which is popped since it is not unused that corresponding index should be made available hence to be made false again for the next cycle
     }
 }
-///
+
+const isUsed = [false, false, false];// This falsy array is the make the time complexity from O(n) to O(1)
 
 const permute = function(nums) {
     const outputArray = [];
-    backTrack(nums, outputArray);
+    backTrack(nums, outputArray, isUsed);
     return outputArray;
 }
 
