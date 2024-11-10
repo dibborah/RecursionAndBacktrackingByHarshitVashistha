@@ -7,14 +7,12 @@ function backTrack(array, target, outputArray, tempArray = [], startIndex = 0) {
 
     for (let i = startIndex; i < array.length; i++) {
         if (i > startIndex && array[i] === array[i - 1]) continue;
+        if (array[i] > target) break; 
         tempArray.push(array[i]);
         backTrack(array, target - array[i], outputArray, tempArray, i + 1);
         tempArray.pop();
     }
 }
-
-const candidates = [10, 1, 2, 7, 6, 1, 5];
-const target = 8;
 
 function combinationSumTwo(candidates, target) {
     const outputArray = []
@@ -22,6 +20,9 @@ function combinationSumTwo(candidates, target) {
     backTrack(candidates, target, outputArray);
     return outputArray;
 }
+
+const candidates = [10, 1, 2, 7, 6, 1, 5];
+const target = 8;
 
 const result = combinationSumTwo(candidates, target);
 console.log(result);
