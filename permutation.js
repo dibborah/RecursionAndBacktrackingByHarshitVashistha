@@ -26,6 +26,6 @@ const permute = function(nums) {
 // number of permutation if elements are distinct 
 // n unique numbers than n!
 
-const nums = [1, 2, 3];
+const nums = [1, 2, 2];
 const result = permute(nums)
 console.log(result);
