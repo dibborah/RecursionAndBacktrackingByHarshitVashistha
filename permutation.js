@@ -1,4 +1,4 @@
-function backTrack(array, outputArray, isUsed, tempArray = []) {
+function backTrack(array, outputArray, isUsed = new Array(array.length).fill(false), tempArray = []) {
     if (tempArray.length === array.length) {
         outputArray.push([...tempArray]);
         return;
@@ -7,11 +7,8 @@ function backTrack(array, outputArray, isUsed, tempArray = []) {
     for(let i = 0; i < array.length; i++) {
         // if (tempArray.includes(array[i])) continue; // time and space complexity O(n) => Linear time complexity. Large inputs less efficient
         if (isUsed[i]) continue; // O (1) => constant time and space complexity => Highly efficient for any inputs
-
-        if (!isUsed[i]) {
-            tempArray.push(array[i]);
-            isUsed[i] = true;
-        }
+        tempArray.push(array[i]);
+        isUsed[i] = true;
         backTrack(array, outputArray, isUsed, tempArray);
         tempArray.pop();
         isUsed[i] = false; // The element which is popped since it is not unused that corresponding index should be made available hence to be made false again for the next cycle
@@ -22,8 +19,7 @@ function backTrack(array, outputArray, isUsed, tempArray = []) {
 
 const permute = function(nums) {
     const outputArray = [];
-    const isUsed = new Array(nums.length).fill(false); // Dynamic and efficient way to create a falsy array whose length of falsy elements would vary
-    backTrack(nums, outputArray, isUsed);
+    backTrack(nums, outputArray);
     return outputArray;
 }
 
