@@ -10,14 +10,14 @@ function backTrack(k , n, outputArray, tempArray = [], start = 1) {
         // if (i > start && i === i - 1) {
         //     continue;
         // };
-        // if (i > n) break;
+        if (i > n) break;
         tempArray.push(i);
         backTrack(k - 1, n - i, outputArray, tempArray, i + 1);
         tempArray.pop();
     }
 }
 
-const k = 3; const n = 9;
+const k = 3; const n = 7;
 
 function combinationSum3(k, n) {
     const outputArray = [];
