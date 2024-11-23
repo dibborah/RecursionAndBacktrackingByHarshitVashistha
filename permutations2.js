@@ -3,12 +3,9 @@ function permute2 (array, outputArray, isUsed, tempArray = []) {
         outputArray.push([...tempArray]);
         return;
     }
-
+    
     for (let i = 0; i < array.length; i++) {
-        // if (i > 0 && array[i] === array[i - 1]) {
-        //   continue;
-        // }
-        if (isUsed[i]) continue;
+        if (isUsed[i] || (i > 0 && array[i] === array[i - 1] && !isUsed[i - 1])) continue;
         tempArray.push(array[i]);
         isUsed[i] = true;
         permute2(array, outputArray, isUsed, tempArray);
@@ -17,7 +14,7 @@ function permute2 (array, outputArray, isUsed, tempArray = []) {
     }
 }
 
-const array = [1, 2, 3];
+const array = [1, 1, 2, 2];
 array.sort((a, b) => a - b);
 
 const outputArray = [];
