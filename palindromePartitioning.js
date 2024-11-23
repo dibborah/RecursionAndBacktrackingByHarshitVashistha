@@ -6,5 +6,24 @@ function isPalindrome(s) {
   return s === c;
 };
 
-const s = 'aab';
-console.log(isPalindrome(s));
+function partitionPartitioning(string, outputArray, isUsed, tempArray = []) {
+    if (tempArray.length === 3) {
+        outputArray.push([...tempArray]);
+        return;
+    };
+
+    for (let i = 0; i < string.length; i++) {
+        if (!isPalindrome(string[i]) || isUsed[i]) continue;
+        tempArray.push(string[i]);
+        isUsed[i] = true;
+        partitionPartitioning(string, outputArray,isUsed, tempArray);
+        tempArray.pop();
+        isUsed[i] = false;
+    }
+};
+
+const string = 'aab';
+const outputArray = [];
+const isUsed = new Array(string.length).fill(false);
+partitionPartitioning(string, outputArray, isUsed);
+console.log('outputArray', outputArray);
