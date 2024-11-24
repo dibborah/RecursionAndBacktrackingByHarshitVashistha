@@ -1,6 +1,6 @@
 function isPalindrome(string, start, end) {
     while(start < end) {
-        if (string[start] !== start[end]) {
+        if (string[start] !== string[end]) {
             return false;
         }
         start++;
@@ -8,8 +8,6 @@ function isPalindrome(string, start, end) {
     }
     return true;
 }
-
-// Call pervez Ali in watsapp
 
 function palindromePartitioning(string, outputArray, tempArray = [], start = 0) {
     if (start === string.length){
@@ -25,7 +23,7 @@ function palindromePartitioning(string, outputArray, tempArray = [], start = 0) 
     }
 };
 
+const string = 'aab';
 const outputArray = [];
-const str = 'aab';
-palindromePartitioning(str, outputArray);
+palindromePartitioning(string, outputArray);
 console.log(outputArray);
