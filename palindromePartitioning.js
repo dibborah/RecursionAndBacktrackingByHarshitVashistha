@@ -1,29 +1,37 @@
-function isPalindrome(s) {
-  let c = '';
-  for (let i = s.length - 1; i >= 0; i--) {
-    c += s[i];
+// function isPalindrome(s) {
+//   let c = '';
+//   for (let i = s.length - 1; i >= 0; i--) {
+//     c += s[i];
+//   }
+//   return s === c;
+// };
+
+function isPalindromeUsingLoop(string, start, end) {
+  while (start < end) {
+    if (string[start] !== string[end]) {
+      return false
+    }
+    start++;
+    end--;
   }
-  return s === c;
+  return true;
 };
 
-function partitionPartitioning(string, outputArray, isUsed, tempArray = []) {
-    if (tempArray.length === 3) {
-        outputArray.push([...tempArray]);
-        return;
-    };
+function partitionPartitioning(string, outputArray, tempArray = [], startIndex = 0) {
+  if (startIndex === string.length) {
+    outputArray.push([...tempArray]);
+  };
 
-    for (let i = 0; i < string.length; i++) {
-        if (!isPalindrome(string[i]) || isUsed[i]) continue;
-        tempArray.push(string[i]);
-        isUsed[i] = true;
-        partitionPartitioning(string, outputArray,isUsed, tempArray);
-        tempArray.pop();
-        isUsed[i] = false;
+  for (let i = startIndex; i < string.length; i++) {
+    if (isPalindromeUsingLoop(string, startIndex, i)) {
+      tempArray.push(string.substring(startIndex, i + 1));
+      partitionPartitioning(string, outputArray, tempArray, startIndex + 1);
+      tempArray.pop();
     }
+  }
 };
 
 const string = 'aab';
 const outputArray = [];
-const isUsed = new Array(string.length).fill(false);
-partitionPartitioning(string, outputArray, isUsed);
+partitionPartitioning(string, outputArray);
 console.log('outputArray', outputArray);
